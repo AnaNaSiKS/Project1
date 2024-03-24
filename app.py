@@ -1,7 +1,7 @@
 """
 This script runs the application using a development server.
 """
-
+import myForm 
 import bottle
 import os
 import sys
@@ -24,9 +24,9 @@ if __name__ == '__main__':
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static').replace('\\', '/')
     HOST = os.environ.get('SERVER_HOST', 'localhost')
     try:
-        PORT = int(os.environ.get('SERVER_PORT', '5555'))
+        PORT = int(os.environ.get('SERVER_PORT', '443'))
     except ValueError:
-        PORT = 5555
+        PORT = 443
 
     @bottle.route('/static/<filepath:path>')
     def server_static(filepath):
