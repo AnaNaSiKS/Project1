@@ -13,7 +13,13 @@ def my_form():
     if not mail or not quest or not username:
         return "Please fill in all fields"
 
-    if not re.match(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$", mail):#регулярное выражение для проверки почтового адреса
+    if not re.match(r"[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-  9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+                "\\." +
+                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+", mail):#регулярное выражение для проверки почтового адреса
         return "Please enter a valid email address"
 
     return f"Thanks, {username}! The answer will be sent to the mail {mail}. Access Date : {cur_date}"
