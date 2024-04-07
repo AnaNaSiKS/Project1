@@ -6,6 +6,7 @@ from datetime import datetime
 @post('/home', method='post')
 def my_form():
     questions = {}
+    list = []
     mail = request.forms.get('ADRESS')
     quest = request.forms.get('QUEST')
     username = request.forms.get('USERNAME')
@@ -24,7 +25,9 @@ def my_form():
             ")+", mail):#регулярное выражение для проверки почтового адреса
         return "Please enter a valid email address"
     
-    questions[mail] = quest
+    list.append(username)
+    list.append(quest)
+    questions[mail] = list
     pdb.set_trace()
 
     return f"Thanks, {username}! The answer will be sent to the mail {mail}. Access Date : {cur_date}"
