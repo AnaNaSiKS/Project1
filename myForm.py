@@ -1,9 +1,11 @@
 from bottle import post, request #Импорт фреймворка
 import re
+import pdb
 from datetime import datetime
 
 @post('/home', method='post')
 def my_form():
+    questions = {}
     mail = request.forms.get('ADRESS')
     quest = request.forms.get('QUEST')
     username = request.forms.get('USERNAME')
@@ -21,5 +23,9 @@ def my_form():
                 "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+", mail):#регулярное выражение для проверки почтового адреса
         return "Please enter a valid email address"
+    
+    questions[mail] = quest
+    pdb.set_trace()
 
     return f"Thanks, {username}! The answer will be sent to the mail {mail}. Access Date : {cur_date}"
+    
